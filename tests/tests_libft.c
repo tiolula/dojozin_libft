@@ -325,7 +325,92 @@ MU_TEST_SUITE(test_strnstr_finding_orabolas_in_amora_but_len_50_should_return_NU
 	mu_assert(expected_result == actual_result, "expected_result should be NULL");
 }
 
+MU_TEST_SUITE(test_func_memchr_locating_R_inside_AURORA_should_return_first_R_position)
+{
+	//ARRANGE
+	char	string[] = "AURORA";
+	int		find = 'R';
+	size_t	size = 6;
+	char	*expected_result = &string[2];
+	char	*actual_result;
+
+	//ACT]
+	actual_result = ft_memchr(string, find, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be the same address");
+}
+
+MU_TEST_SUITE(test_func_memchr_locating_O_inside_AURORA_should_return_O_position)
+{
+	//ARRANGE
+	char	string[] = "AURORA";
+	int		find = 'O';
+	size_t	size = 6;
+	char	*expected_result = &string[3];
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_memchr(string, find, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be the same address");
+}
+
+MU_TEST_SUITE(test_func_memchr_locating_X_inside_AURORA_should_return_NULL)
+{
+	//ARRANGE
+	char	string[] = "AURORA";
+	int		find = 'X';
+	size_t	size = 6;
+	char	*expected_result = 0;
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_memchr(string, find, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be NULL");
+}
+
+MU_TEST_SUITE(test_func_memchr_locating_O_inside_AURORA_with_a_range_of_3_should_return_NULL)
+{
+	//ARRANGE
+	char	string[] = "AURORA";
+	int		find = 'O';
+	size_t	size = 3;
+	char	*expected_result = 0;
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_memchr(string, find, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be NULL");
+}
+
+MU_TEST_SUITE(test_func_memchr_passing_size_0_should_return_NULL)
+{
+	//ARRANGE
+	char	string[] = "AURORA";
+	int		find = 'O';
+	size_t	size = 0;
+	char	*expected_result = 0;
+	char	*actual_result;
+
+	//ACT
+	actual_result = ft_memchr(string, find, size);
+
+	//ASSERT
+	mu_assert(expected_result == actual_result, "expected_result should be NULL");
+}
+
 MU_TEST_SUITE(test_suite) {
+	MU_RUN_TEST(test_func_memchr_passing_size_0_should_return_NULL);
+	MU_RUN_TEST(test_func_memchr_locating_O_inside_AURORA_with_a_range_of_3_should_return_NULL);
+	MU_RUN_TEST(test_func_memchr_locating_X_inside_AURORA_should_return_NULL);
+	MU_RUN_TEST(test_func_memchr_locating_O_inside_AURORA_should_return_O_position);
+	MU_RUN_TEST(test_func_memchr_locating_R_inside_AURORA_should_return_first_R_position);
 	MU_RUN_TEST(test_strlcpy_entering_mochida_rapdos_0_do_not_modify_dst_and_returns_6);
 	MU_RUN_TEST(test_strlcpy_entering_lu_la_minus_1_set_dst_as_la_and_returns_2);
 	MU_RUN_TEST(test_strlcpy_entering_papelada_boiada_9_keep_dst7_as_a);
